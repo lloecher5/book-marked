@@ -16,13 +16,25 @@ function Books() {
       })
       .then((res) => {
         setBooks(res.data);
-        console.log(res.data);
       });
   }, [token]);
 
   if (!token) {
     navigate("/login");
   }
+
+  const deleteBook = (e) => {
+    console.log(e.target.id);
+    axios
+      .delete(`/api/v1/books/${e.target.id}`, {
+        headers: {
+          "x-access-token": token,
+        },
+      })
+      .then((res) => {
+        window.location.reload();
+      });
+  };
 
   return (
     <div>
@@ -31,9 +43,12 @@ function Books() {
         <div key={book.id}>
           <h2>{book.title}</h2>
           <p>{book.author}</p>
-          <p>{book.date}</p>
+          <p>{book.date.split("T")[0]}</p>
           <p>{book.rating}</p>
           <p>{book.notes}</p>
+          <button id={book.id} onClick={deleteBook}>
+            Delete
+          </button>
         </div>
       ))}
     </div>

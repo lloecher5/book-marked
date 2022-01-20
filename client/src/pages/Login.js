@@ -14,6 +14,7 @@ const Login = () => {
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         navigate("/books");
+        window.location.reload();
       })
       .catch((err) => {
         alert(err.response.data.error);

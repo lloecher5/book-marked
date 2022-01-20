@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const token = localStorage.getItem("token");
   const isLoggedIn = token ? true : false;
+  const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.reload();
+
+    navigate("/login");
   };
 
   return (
@@ -20,6 +23,9 @@ const NavBar = () => {
             <>
               <li>
                 <Link to="/books">My Books</Link>
+              </li>
+              <li>
+                <Link to="/add-book">Add New Book</Link>
               </li>
               <li>
                 <button href="#" onClick={() => handleLogout()}>
