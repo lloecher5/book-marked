@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Card, Button } from "react-bootstrap";
+import "./Books.css";
 
 function Books() {
   const [books, setBooks] = useState([]);
@@ -41,23 +43,36 @@ function Books() {
   return (
     <div>
       <h1>Book Database</h1>
-      {books.map((book) => (
-        <div key={book.id}>
-          <h2>{book.title}</h2>
-          <img
-            src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`}
-            alt={"cover"}
-          />
-          <p>{book.author}</p>
-          <p>{book.date.split("T")[0]}</p>
-          <p>{book.rating}</p>
-          <p>{book.notes}</p>
 
-          <button id={book.id} onClick={deleteBook}>
-            Delete
-          </button>
-        </div>
-      ))}
+      <div className="book-list">
+        {books.map((book) => (
+          <Card key={book.id} style={{ width: "18rem" }}>
+            <Card.Img
+              variant="top"
+              src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`}
+            />
+            <Card.Body className="text">
+              <Card.Title>Rating: {book.rating}</Card.Title>
+              <Card.Text>
+                <p>
+                  {" "}
+                  <b>Date Finished:</b> {book.date.split("T")[0]}
+                </p>
+
+                <p>
+                  <u>Notes:</u>
+                  <br />
+
+                  {book.notes}
+                </p>
+              </Card.Text>
+              <Button variant={"danger"} id={book.id} onClick={deleteBook}>
+                Delete
+              </Button>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }
