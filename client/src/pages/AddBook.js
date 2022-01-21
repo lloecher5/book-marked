@@ -8,12 +8,25 @@ function AddBook() {
   const [date, setDate] = useState("");
   const [rating, setRating] = useState("");
   const [notes, setNotes] = useState("");
+  const [isbn, setIsbn] = useState("");
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
+  //function that will add a new book to the new books page
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(token);
+    //get isbn here
+    const params = `${title ? "title=" + title : ""}${
+      author ? "&author=" + author : ""
+    }`;
+    //fetch to open library API
+    fetch(`https://openlibrary.org/search.json?${params}&limit=1`)
+      .then((res) => res.json())
+      .then((data) => setIsbn(data.docs[0].isbn[0]));
+
+    console.log(isbn);
+
+    //use the books api to send a post request with the information from the from. Attach the token to authenticate user.
     axios
       .post(
         "/api/v1/books",
@@ -31,7 +44,15 @@ function AddBook() {
         }
       )
       .then((res) => {
-        console.log(res.data);
+        // const params = `${res.data.title ? "title=" + res.data.title : ""}${
+        //   res.data.author ? "&author=" + res.data.author : ""
+        // }`;
+
+        // //fetch to open library API
+        // fetch(`https://openlibrary.org/search.json?${params}&limit=1`)
+        //   .then((res) => res.json())
+        //   .then((data) => console.log(data.docs[0].isbn[0]));
+
         alert(`${res.data.title} was successfully added.`);
         navigate("/books");
       });

@@ -15,6 +15,8 @@ function Books() {
         },
       })
       .then((res) => {
+        console.log(res.data);
+
         setBooks(res.data);
       });
   }, [token]);
@@ -23,8 +25,9 @@ function Books() {
     navigate("/login");
   }
 
+  //function that os used to delete existing books from the my books list
   const deleteBook = (e) => {
-    console.log(e.target.id);
+    //use the books api to delete a book that matches the id included in the delete button. Attach the token in the request to ensure the user is auhtenticated
     axios
       .delete(`/api/v1/books/${e.target.id}`, {
         headers: {
@@ -32,6 +35,7 @@ function Books() {
         },
       })
       .then((res) => {
+        //reload page after the book is deleted in the database
         window.location.reload();
       });
   };

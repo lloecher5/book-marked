@@ -22,6 +22,8 @@ app.use("/", indexRouter);
 
 //users route
 app.use("/api/v1/users", usersRouter);
+
+//books route
 app.use("/api/v1/books", booksRouter);
 
 module.exports = app;
