@@ -15,8 +15,6 @@ function Books() {
         },
       })
       .then((res) => {
-        console.log(res.data);
-
         setBooks(res.data);
       });
   }, [token]);
@@ -42,14 +40,19 @@ function Books() {
 
   return (
     <div>
-      <h1>Books</h1>
+      <h1>Book Database</h1>
       {books.map((book) => (
         <div key={book.id}>
           <h2>{book.title}</h2>
+          <img
+            src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`}
+            alt={"cover"}
+          />
           <p>{book.author}</p>
           <p>{book.date.split("T")[0]}</p>
           <p>{book.rating}</p>
           <p>{book.notes}</p>
+
           <button id={book.id} onClick={deleteBook}>
             Delete
           </button>

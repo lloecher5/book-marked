@@ -8,7 +8,8 @@ function AddBook() {
   const [date, setDate] = useState("");
   const [rating, setRating] = useState("");
   const [notes, setNotes] = useState("");
-  const [isbn, setIsbn] = useState("");
+  let isbn = "";
+
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -22,39 +23,31 @@ function AddBook() {
     //fetch to open library API
     fetch(`https://openlibrary.org/search.json?${params}&limit=1`)
       .then((res) => res.json())
-      .then((data) => setIsbn(data.docs[0].isbn[0]));
+      .then((data) => {
+        isbn = data.docs[0].isbn[0];
 
-    console.log(isbn);
-
-    //use the books api to send a post request with the information from the from. Attach the token to authenticate user.
-    axios
-      .post(
-        "/api/v1/books",
-        {
-          title,
-          author,
-          date,
-          rating,
-          notes,
-        },
-        {
-          headers: {
-            "x-access-token": token,
-          },
-        }
-      )
-      .then((res) => {
-        // const params = `${res.data.title ? "title=" + res.data.title : ""}${
-        //   res.data.author ? "&author=" + res.data.author : ""
-        // }`;
-
-        // //fetch to open library API
-        // fetch(`https://openlibrary.org/search.json?${params}&limit=1`)
-        //   .then((res) => res.json())
-        //   .then((data) => console.log(data.docs[0].isbn[0]));
-
-        alert(`${res.data.title} was successfully added.`);
-        navigate("/books");
+        //use the books api to send a post request with the information from the from. Attach the token to authenticate user.
+        axios
+          .post(
+            "/api/v1/books",
+            {
+              title,
+              author,
+              date,
+              rating,
+              notes,
+              isbn,
+            },
+            {
+              headers: {
+                "x-access-token": token,
+              },
+            }
+          )
+          .then((res) => {
+            alert(`${res.data.title} was successfully added.`);
+            navigate("/books");
+          });
       });
   };
 

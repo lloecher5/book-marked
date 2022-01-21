@@ -14,14 +14,17 @@ module.exports = {
       author: {
         type: Sequelize.TEXT,
       },
-      date: {
-        type: Sequelize.DATE,
+      rating: {
+        type: Sequelize.FLOAT,
       },
       notes: {
         type: Sequelize.TEXT,
       },
-      rating: {
-        type: Sequelize.FLOAT,
+      date: {
+        type: Sequelize.DATE,
+      },
+      isbn: {
+        type: Sequelize.TEXT,
       },
       UserId: {
         type: Sequelize.INTEGER,

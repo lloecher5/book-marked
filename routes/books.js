@@ -34,7 +34,8 @@ router.post("/", checkAuth, (req, res) => {
     !req.body.author ||
     !req.body.date ||
     !req.body.notes ||
-    !req.body.rating
+    !req.body.rating ||
+    !req.body.isbn
   ) {
     res.status(400).json({ error: "please include all required fields" });
     return;
@@ -47,6 +48,7 @@ router.post("/", checkAuth, (req, res) => {
     date: req.body.date,
     notes: req.body.notes,
     rating: req.body.rating,
+    isbn: req.body.isbn,
     UserId: req.user.id,
   }).then((book) => {
     res.status(201).json(book);
