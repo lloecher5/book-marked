@@ -8,6 +8,7 @@ function Books() {
   const [books, setBooks] = useState([]);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  console.log(books.length);
 
   useEffect(() => {
     axios
@@ -41,30 +42,25 @@ function Books() {
   };
 
   return (
-    <div>
-      <h1>Book Database</h1>
+    <div className="books">
+      <h1>Your Book Collection</h1>
 
       <div className="book-list">
         {books.map((book) => (
           <Card key={book.id} style={{ width: "18rem" }}>
             <Card.Img
+              className="cover"
               variant="top"
               src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`}
             />
             <Card.Body className="text">
               <Card.Title>Rating: {book.rating}</Card.Title>
               <Card.Text>
-                <p>
-                  {" "}
-                  <b>Date Finished:</b> {book.date.split("T")[0]}
-                </p>
-
-                <p>
-                  <u>Notes:</u>
-                  <br />
-
-                  {book.notes}
-                </p>
+                <b>Date Finished:</b> {book.date.split("T")[0]}
+                <br />
+                <u>Notes:</u>
+                <br />
+                {book.notes}
               </Card.Text>
               <Button variant={"danger"} id={book.id} onClick={deleteBook}>
                 Delete

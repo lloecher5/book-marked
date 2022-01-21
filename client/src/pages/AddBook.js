@@ -1,6 +1,8 @@
 import axios from "axios";
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import "./AddBook.css";
 
 function AddBook() {
   const [title, setTitle] = useState("");
@@ -52,8 +54,8 @@ function AddBook() {
   };
 
   return (
-    <div>
-      <h1>Add new book</h1>
+    <div className="add-book">
+      <h1>Add a new book to your collection.</h1>
 
       <form onSubmit={handleSubmit}>
         <p>
@@ -97,6 +99,8 @@ function AddBook() {
             id="rating"
             onChange={(e) => setRating(e.target.value)}
             value={rating}
+            min="0"
+            max="10"
             step="0.1"
             required
           />
@@ -111,7 +115,9 @@ function AddBook() {
             value={notes}
             required></textarea>
         </p>
-        <button type="submit">Add Book</button>
+        <Button variant="dark" type="submit">
+          Add Book
+        </Button>
       </form>
     </div>
   );

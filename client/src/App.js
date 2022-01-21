@@ -6,11 +6,12 @@ import Login from "./pages/Login";
 import NavBar from "./components/NavBar";
 import Books from "./pages/Books";
 import AddBook from "./pages/AddBook";
+import NavBarBootstrap from "./components/NavBarBootstrap";
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      <NavBarBootstrap />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

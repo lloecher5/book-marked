@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ const Register = () => {
   };
   return (
     <div>
-      <h1>Register </h1>
+      <h1>Sign Up</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <p>
           <label htmlFor="email">Email</label>
@@ -45,7 +46,9 @@ const Register = () => {
             required
           />
         </p>
-        <button type="submit">Register</button>
+        <Button variant="dark" type="submit">
+          Register
+        </Button>
       </form>
     </div>
   );

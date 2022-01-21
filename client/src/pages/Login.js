@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -46,8 +48,13 @@ const Login = () => {
             required
           />
         </p>
-        <button type="submit">Login</button>
+        <Button className="login-btn" variant="dark" type="submit">
+          Login
+        </Button>
       </form>
+      <a className="sign-up" href="/register">
+        First time user? Create new account.{" "}
+      </a>
     </div>
   );
 };
