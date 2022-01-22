@@ -4,7 +4,10 @@ const router = express.Router();
 const models = require("../models");
 
 //GET /api/v1/books/
+
+//gets the data from the database allowing you to render it on the page
 router.get("/", checkAuth, (req, res) => {
+  //find all the books where the UserId matches
   models.Book.findAll({ where: { UserId: req.user.id } }).then((books) => {
     res.send(books);
   });
@@ -27,6 +30,8 @@ router.delete("/:id", checkAuth, (req, res) => {
 });
 
 //POST /api/v1/books
+
+//used to create new book entries into the database
 router.post("/", checkAuth, (req, res) => {
   //check for all required fields
   if (
@@ -41,7 +46,7 @@ router.post("/", checkAuth, (req, res) => {
     return;
   }
 
-  //create new book in the database
+  //create new book in the database. Takes the data from the input fields and sends to the database
   models.Book.create({
     title: req.body.title,
     author: req.body.author,

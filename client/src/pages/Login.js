@@ -7,6 +7,7 @@ import "./Login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [wrongPassword, setWrongPassword] = useState();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -19,7 +20,12 @@ const Login = () => {
         window.location.reload();
       })
       .catch((err) => {
-        alert(err.response.data.error);
+        setPassword("");
+
+        setWrongPassword(`${err.response.data.error}`);
+        setTimeout(() => {
+          setWrongPassword("");
+        }, 3000);
       });
   };
   return (
@@ -48,6 +54,8 @@ const Login = () => {
             required
           />
         </p>
+
+        {wrongPassword && <p className="error-message">{wrongPassword}</p>}
         <Button className="login-btn" variant="dark" type="submit">
           Login
         </Button>

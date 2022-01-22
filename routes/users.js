@@ -42,7 +42,7 @@ router.post("/register", function (req, res, next) {
 router.post("/login", (req, res) => {
   //checks to make sure that there are no missing fields
   if (!req.body.email || !req.body.password) {
-    //send back an erro if there is a missing email or password
+    //send back an error if there is a missing email or password
     res.status(400).json({ error: "please include all required fields." });
     return;
   }
@@ -51,7 +51,9 @@ router.post("/login", (req, res) => {
   models.User.findOne({ where: { email: req.body.email } }).then((user) => {
     //if no user, send an error
     if (!user) {
-      res.status(404).json({ error: "could not find that email" });
+      res
+        .status(404)
+        .json({ error: "Email does not exist. Please try again." });
       return;
     }
 
@@ -59,7 +61,9 @@ router.post("/login", (req, res) => {
     bcrypt.compare(req.body.password, user.password).then((match) => {
       //if no match, send error
       if (!match) {
-        res.status(400).json({ error: "password incorrect" });
+        res
+          .status(400)
+          .json({ error: "Incorrect Password. Please try again." });
         return;
       }
       //log the user in. The JWT acts a credential for a user to log back in
