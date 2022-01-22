@@ -47,7 +47,6 @@ function AddBook() {
             }
           )
           .then((res) => {
-            alert(`${res.data.title} was successfully added.`);
             navigate("/books");
           });
       });

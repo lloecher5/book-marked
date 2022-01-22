@@ -12,7 +12,7 @@ const Footer = () => {
           rel="noreferrer"
           target="_blank">
           <FaLinkedin />
-        </a>
+        </a>{" "}
         <a
           href="https://github.com/lloecher5/book-marked"
           rel="noreferrer"

@@ -40,7 +40,7 @@ const Home = (props) => {
   }, [token]);
 
   return (
-    <div>
+    <div className="books">
       <h1 className="title">
         BookMarked <FaBookmark className="icon" />
       </h1>

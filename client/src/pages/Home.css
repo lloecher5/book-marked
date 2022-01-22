@@ -12,5 +12,8 @@
   flex-wrap: wrap;
   gap: 50px;
   justify-content: center;
-  margin-bottom: 10px;
+}
+
+.books {
+  margin-bottom: 50px;
 }
