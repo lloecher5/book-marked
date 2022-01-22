@@ -22,8 +22,8 @@ const Register = () => {
   };
   return (
     <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <h1 className="title">Sign Up</h1>
+      <form onSubmit={(e) => handleSubmit(e)} autoComplete="off">
         <p>
           <label htmlFor="email">Email</label>
           <br />

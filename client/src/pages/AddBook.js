@@ -66,6 +66,7 @@ function AddBook() {
             id="title"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
+            autoComplete="off"
             required
           />
         </p>
@@ -77,6 +78,7 @@ function AddBook() {
             id="author"
             onChange={(e) => setAuthor(e.target.value)}
             value={author}
+            autoComplete="off"
             required
           />
         </p>

@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import { useNavigate } from "react-router-dom";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { FaBookmark } from "react-icons/fa";
+import "./NavBarBootstrap.css";
 
 const NavBarBootstrap = () => {
   const token = localStorage.getItem("token");
@@ -9,8 +11,7 @@ const NavBarBootstrap = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
-
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -18,7 +19,11 @@ const NavBarBootstrap = () => {
       {isLoggedIn ? (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand>BookMarked</Navbar.Brand>
+            <Navbar.Brand href="/">
+              {" "}
+              <FaBookmark className="nav-icon" />
+              BookMarked
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto">
@@ -26,7 +31,7 @@ const NavBarBootstrap = () => {
                 <Nav.Link href="/add-book">Add Book</Nav.Link>
               </Nav>
               <Nav>
-                <Nav.Link href="/login">
+                <Nav.Link href="/">
                   <Button
                     variant="outline-light"
                     onClick={() => handleLogout()}>
@@ -40,11 +45,13 @@ const NavBarBootstrap = () => {
       ) : (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand>Bookmarked</Navbar.Brand>
+            <Navbar.Brand href="/">
+              <FaBookmark className="nav-icon" />
+              BookMarked
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav>
-                <Nav.Link href="/login">Login</Nav.Link>
                 <Nav.Link href="/register">Sign Up</Nav.Link>
               </Nav>
             </Navbar.Collapse>

@@ -43,7 +43,7 @@ function Books() {
 
   return (
     <div className="books">
-      <h1>Your Book Collection</h1>
+      <h1>Your book collection.</h1>
 
       <div className="book-list">
         {books.map((book) => (

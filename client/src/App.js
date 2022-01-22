@@ -3,10 +3,11 @@ import "./App.css";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import NavBar from "./components/NavBar";
+
 import Books from "./pages/Books";
 import AddBook from "./pages/AddBook";
 import NavBarBootstrap from "./components/NavBarBootstrap";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/books" element={<Books />} />
         <Route path="/add-book" element={<AddBook />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
