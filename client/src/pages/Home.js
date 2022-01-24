@@ -4,6 +4,7 @@ import { FaBookmark } from "react-icons/fa";
 import { Button, Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Home = (props) => {
   const token = localStorage.getItem("token");
@@ -12,9 +13,11 @@ const Home = (props) => {
   const [selectedBook, setSelectedBook] = useState("");
   const [renderedBook, setRenderedBook] = useState([]);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const showBook = books.filter((book) => {
-    return book.title === selectedBook;
+    // will render book even if the does not match
+    return book.title.toLowerCase() === selectedBook.toLowerCase();
   });
 
   const submitHandler = (e) => {
@@ -25,6 +28,10 @@ const Home = (props) => {
     setMessage(
       `${selectedBook} does not yet exist in your book collection. Go to the "Add Book" page to expand your library!`
     );
+
+    setTimeout(() => {
+      navigate("add-book");
+    }, 1000);
   };
 
   useEffect(() => {
