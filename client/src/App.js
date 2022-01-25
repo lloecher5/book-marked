@@ -8,6 +8,7 @@ import Books from "./pages/Books";
 import AddBook from "./pages/AddBook";
 import NavBarBootstrap from "./components/NavBarBootstrap";
 import Footer from "./components/Footer";
+import Stats from "./pages/Stats";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/books" element={<Books />} />
         <Route path="/add-book" element={<AddBook />} />
+        <Route path="/stats" element={<Stats />} />
       </Routes>
       <Footer />
     </div>

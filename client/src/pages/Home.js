@@ -28,10 +28,6 @@ const Home = (props) => {
     setMessage(
       `${selectedBook} does not yet exist in your book collection. Go to the "Add Book" page to expand your library!`
     );
-
-    setTimeout(() => {
-      navigate("add-book");
-    }, 1000);
   };
 
   useEffect(() => {
@@ -92,7 +88,7 @@ const Home = (props) => {
                 </Card>
               ))
             ) : (
-              <p>{message}</p>
+              <p className="message">{message}</p>
             )}
           </div>
         </>

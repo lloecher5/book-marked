@@ -29,6 +29,7 @@ const NavBarBootstrap = () => {
               <Nav className="me-auto">
                 <Nav.Link href="/books">My Books</Nav.Link>
                 <Nav.Link href="/add-book">Add Book</Nav.Link>
+                <Nav.Link href="/stats">Your Reading Stats</Nav.Link>
               </Nav>
               <Nav>
                 <Nav.Link href="/">
