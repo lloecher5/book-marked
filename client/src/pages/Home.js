@@ -27,7 +27,12 @@ const Home = (props) => {
 
   const showBook = books.filter((book) => {
     // will  allow the book to render even if the does not match the case exactly as the title.
-    return book.title.toLowerCase() === selectedBook.toLowerCase();
+    return (
+      book.title
+        .toLowerCase()
+        .trim()
+        .indexOf(selectedBook.toLowerCase().trim()) !== -1
+    );
   });
 
   const submitHandler = (e) => {
