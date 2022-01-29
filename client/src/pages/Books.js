@@ -8,7 +8,6 @@ function Books() {
   const [books, setBooks] = useState([]);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
-  console.log(books.length);
 
   useEffect(() => {
     axios
@@ -22,11 +21,20 @@ function Books() {
       });
   }, [token]);
 
+  if (books.length === 0) {
+    navigate("/add-book");
+  }
+
   if (!token) {
     navigate("/login");
   }
 
-  //function that os used to delete existing books from the my books list
+  //sort the books based on rating
+  books.sort((a, b) => {
+    return b.rating - a.rating;
+  });
+
+  //function that is used to delete existing books from the my books list
   const deleteBook = (e) => {
     //use the books api to delete a book that matches the id included in the delete button. Attach the token in the request to ensure the user is auhtenticated
     axios

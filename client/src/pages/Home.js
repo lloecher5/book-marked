@@ -4,7 +4,6 @@ import { FaBookmark } from "react-icons/fa";
 import { Button, Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const Home = (props) => {
   const token = localStorage.getItem("token");
@@ -13,22 +12,6 @@ const Home = (props) => {
   const [selectedBook, setSelectedBook] = useState("");
   const [renderedBook, setRenderedBook] = useState([]);
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();
-
-  const showBook = books.filter((book) => {
-    // will render book even if the does not match
-    return book.title.toLowerCase() === selectedBook.toLowerCase();
-  });
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    setRenderedBook(showBook);
-    setSelectedBook("");
-    setMessage(
-      `${selectedBook} does not yet exist in your book collection. Go to the "Add Book" page to expand your library!`
-    );
-  };
 
   useEffect(() => {
     axios
@@ -41,6 +24,26 @@ const Home = (props) => {
         setBooks(res.data);
       });
   }, [token]);
+
+  const showBook = books.filter((book) => {
+    // will  allow the book to render even if the does not match the case exactly as the title.
+    return book.title.toLowerCase() === selectedBook.toLowerCase();
+  });
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    //renders the book that matches the search
+    setRenderedBook(showBook);
+
+    //sets the input bar to empty when the submit button is pressed
+    setSelectedBook("");
+
+    //only displayed when a book is not found in the database.
+    setMessage(
+      `${selectedBook} does not yet exist in your book collection. Go to the "Add Book" page to expand your library!`
+    );
+  };
 
   return (
     <div className="books">
@@ -67,7 +70,7 @@ const Home = (props) => {
             </Button>
           </form>
           <div className="book-list">
-            {renderedBook.length === 1 ? (
+            {renderedBook.length > 0 ? (
               renderedBook.map((book) => (
                 <Card key={book.id} style={{ width: "18rem" }}>
                   <Card.Img

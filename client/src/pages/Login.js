@@ -8,6 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [wrongPassword, setWrongPassword] = useState();
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -16,6 +17,7 @@ const Login = () => {
       .post("/api/v1/users/login", { email, password })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+
         navigate("/books");
         window.location.reload();
       })
