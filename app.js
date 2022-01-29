@@ -20,10 +20,14 @@ app.use("/", indexRouter);
 
 //everything in the users file will be prefixed with api/v1
 
-//users route
+//users backend endpoint. The front end makes call to these API endpoints
 app.use("/api/v1/users", usersRouter);
 
-//books route
+//books backend route
 app.use("/api/v1/books", booksRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
 
 module.exports = app;
