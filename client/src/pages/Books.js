@@ -62,7 +62,7 @@ function Books() {
               src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`}
             />
             <Card.Body className="text">
-              <Card.Title>Rating: {book.rating}</Card.Title>
+              <Card.Title>Rating: {book.rating} / 10 </Card.Title>
               <Card.Text>
                 <b>Date Finished:</b> {book.date.split("T")[0]}
                 <br />
